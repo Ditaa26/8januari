@@ -1,630 +1,259 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Mountain Man ⛰️</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Patrick+Hand&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Mountain Man ⛰️</title>
 
-        body {
-            font-family: 'Patrick Hand', cursive;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background: #0f0c29;
-            position: relative;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Indie+Flower&family=Patrick+Hand&display=swap" rel="stylesheet">
 
-        /* Animated Gradient Background */
-        .bg-gradient {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: 0;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+body{
+  font-family:'Patrick Hand', cursive;
+  min-height:100vh;
+  background:linear-gradient(-45deg,#0f0c29,#302b63,#24243e,#1a1a2e);
+  background-size:400% 400%;
+  animation:bgMove 15s ease infinite;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
 
-        /* Particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
 
-        .particle {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-            animation: fall linear infinite;
-        }
+/* ===== PARTICLES ===== */
+.particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.particle{
+  position:absolute;
+  width:3px;
+  height:3px;
+  background:white;
+  border-radius:50%;
+  opacity:.7;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  from{transform:translateY(-100vh)}
+  to{transform:translateY(100vh);opacity:0}
+}
 
-        @keyframes fall {
-            0% {
-                transform: translateY(-100vh) translateX(0);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
+/* ===== PHOTO BUBBLE (SAMA DENGAN GALLERY) ===== */
+.bubbles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+.bubble{
+  position:absolute;
+  width:80px;
+  height:80px;
+  border-radius:50%;
+  overflow:hidden;
+  border:3px solid rgba(255,255,255,.35);
+  box-shadow:
+    0 4px 15px rgba(0,0,0,.35),
+    inset 0 0 20px rgba(255,255,255,.25);
+  animation:floatBubble 12s ease-in-out infinite;
+  opacity:.75;
+}
+.bubble img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-        /* Photo Bubbles */
-        .photo-bubble {
-            position: fixed;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 3px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2);
-            animation: floatBubble 12s ease-in-out infinite;
-            pointer-events: none;
-            opacity: 0.7;
-            z-index: 5;
-        }
+/* posisi ala gallery */
+.b1{top:10%;left:18%;animation-delay:0s;}
+.b2{top:45%;right:12%;width:90px;height:90px;animation-delay:2s;}
+.b3{bottom:18%;left:10%;width:70px;height:70px;animation-delay:4s;}
+.b4{top:30%;right:35%;width:85px;height:85px;animation-delay:1s;}
+.b5{bottom:40%;right:22%;width:65px;height:65px;animation-delay:3s;}
+.b6{top:60%;left:30%;animation-delay:5s;}
 
-        .photo-bubble img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+@keyframes floatBubble{
+  0%,100%{
+    transform:translate(0,0) scale(1);
+    opacity:.7;
+  }
+  25%{
+    transform:translate(10px,-15px) scale(1.1);
+    opacity:.85;
+  }
+  50%{
+    transform:translate(-8px,-25px) scale(.95);
+    opacity:.75;
+  }
+  75%{
+    transform:translate(12px,-10px) scale(1.05);
+    opacity:.8;
+  }
+}
 
-        .bubble1 { top: 10%; left: 5%; width: 80px; height: 80px; animation-delay: 0s; }
-        .bubble2 { top: 60%; right: 8%; width: 100px; height: 100px; animation-delay: 2s; }
-        .bubble3 { bottom: 15%; left: 10%; width: 85px; height: 85px; animation-delay: 4s; }
-        .bubble4 { top: 30%; right: 20%; width: 75px; height: 75px; animation-delay: 1s; }
-        .bubble5 { top: 75%; left: 15%; width: 90px; height: 90px; animation-delay: 3s; }
-        .bubble6 { bottom: 40%; right: 12%; width: 70px; height: 70px; animation-delay: 5s; }
+/* ===== SCRAPBOOK ===== */
+.scrapbook{
+  width:90%;
+  max-width:550px;
+  background:#fdf6e9;
+  padding:40px 35px;
+  border-radius:8px;
+  border:3px solid #d4a574;
+  box-shadow:0 20px 60px rgba(0,0,0,.5),
+             inset 0 0 100px rgba(139,115,85,.1);
+  position:relative;
+  z-index:10;
+  text-align:center;
+  animation:fade .8s ease;
+}
 
-        @keyframes floatBubble {
-            0%, 100% { 
-                transform: translateY(0) translateX(0) scale(1);
-                opacity: 0.7;
-            }
-            25% { 
-                transform: translateY(-15px) translateX(10px) scale(1.1);
-                opacity: 0.9;
-            }
-            50% { 
-                transform: translateY(-25px) translateX(-8px) scale(0.95);
-                opacity: 0.75;
-            }
-            75% { 
-                transform: translateY(-10px) translateX(12px) scale(1.05);
-                opacity: 0.8;
-            }
-        }
+.scrapbook::before{
+  content:'';
+  position:absolute;
+  top:15px;
+  left:20px;
+  width:100px;
+  height:25px;
+  background:rgba(255,223,186,.7);
+  border:1px dashed rgba(139,115,85,.3);
+  transform:rotate(-2deg);
+}
 
-        /* Background Decorations */
-        .background-deco {
-            position: fixed;
-            opacity: 0.15;
-            pointer-events: none;
-            font-size: 60px;
-            animation: float 10s ease-in-out infinite;
-            z-index: 2;
-        }
+.scrapbook::after{
+  content:'📌';
+  position:absolute;
+  top:10px;
+  right:25px;
+  font-size:30px;
+}
 
-        .bg-mountain1 { top: 15%; left: 10%; animation-delay: 0s; }
-        .bg-mountain2 { bottom: 25%; right: 15%; animation-delay: 2s; }
-        .bg-star1 { top: 20%; right: 10%; animation-delay: 1s; }
-        .bg-star2 { bottom: 30%; left: 12%; animation-delay: 3s; }
-        .bg-heart1 { top: 50%; left: 8%; animation-delay: 2s; }
-        .bg-heart2 { top: 40%; right: 18%; animation-delay: 4s; }
+h1{
+  font-family:'Indie Flower', cursive;
+  font-size:32px;
+  color:#5a4636;
+  margin-bottom:15px;
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
+.subtitle{
+  font-size:18px;
+  color:#8B7355;
+  min-height:40px;
+  margin-bottom:30px;
+}
 
-        /* Main Container */
-        .container {
-            position: relative;
-            z-index: 10;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+.typing{
+  border-right:3px solid #8B7355;
+  padding-right:6px;
+  animation:blink .7s infinite;
+}
+@keyframes blink{50%{border-color:transparent}}
 
-        /* Content Box */
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            background: rgba(253, 246, 233, 0.95);
-            border-radius: 20px;
-            padding: 60px 50px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 100px rgba(139,115,85,0.1);
-            border: 4px solid #d4a574;
-            position: relative;
-        }
+.nav-cards{
+  display:flex;
+  gap:15px;
+}
+.nav-card{
+  flex:1;
+  text-decoration:none;
+  color:#5a4636;
+  background:rgba(139,115,85,.1);
+  border:2px solid #d4a574;
+  border-radius:12px;
+  padding:25px 15px;
+  transition:.3s;
+}
+.nav-card:hover{
+  transform:translateY(-6px) scale(1.05);
+  background:rgba(139,115,85,.2);
+}
+.card-icon{font-size:32px;margin-bottom:8px;}
+.card-title{font-family:'Indie Flower', cursive;font-size:18px;}
+.card-desc{font-size:14px;opacity:.8;}
 
-        .hero-content::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            width: 100px;
-            height: 25px;
-            background: rgba(255,223,186,0.7);
-            border: 1px dashed rgba(139,115,85,0.3);
-            transform: rotate(-2deg);
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
-        }
+@media(max-width:600px){
+  h1{font-size:26px}
+  .nav-cards{flex-direction:column}
+}
 
-        .hero-content::after {
-            content: '📌';
-            position: absolute;
-            top: 10px;
-            right: 30px;
-            font-size: 35px;
-            transform: rotate(25deg);
-            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3));
-        }
-
-        /* Doodles inside box */
-        .doodle {
-            position: absolute;
-            opacity: 0.25;
-            pointer-events: none;
-            color: #8B7355;
-        }
-
-        .doodle1 { top: 40px; left: 35px; font-size: 28px; transform: rotate(-15deg); }
-        .doodle2 { bottom: 40px; right: 40px; font-size: 32px; transform: rotate(20deg); }
-        .doodle3 { top: 120px; right: 30px; font-size: 24px; transform: rotate(-10deg); }
-        .doodle4 { bottom: 100px; left: 40px; font-size: 26px; transform: rotate(15deg); }
-
-        /* Main Title */
-        .main-title {
-            font-size: 4.5rem;
-            font-weight: bold;
-            margin-bottom: 25px;
-            color: #5a4636;
-            font-family: 'Indie Flower', cursive;
-            text-shadow: 3px 3px 0 rgba(255,255,255,0.5);
-            opacity: 0;
-            animation: fadeInScale 1.5s ease forwards;
-        }
-
-        @keyframes fadeInScale {
-            0% {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        /* Subtitle with Typing Effect */
-        .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #8B7355;
-            opacity: 0;
-            animation: fadeIn 1s ease 0.5s forwards;
-            min-height: 50px;
-            font-weight: 600;
-        }
-
-        .typing-text {
-            border-right: 3px solid #8B7355;
-            padding-right: 5px;
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { border-color: transparent; }
-            51%, 100% { border-color: #8B7355; }
-        }
-
-        /* Description */
-        .description {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 50px;
-            color: #3d3d3d;
-            opacity: 0;
-            animation: fadeIn 1s ease 1s forwards;
-            text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
-        }
-
-        /* Navigation Cards */
-        .nav-cards {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            gap: 20px;
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0;
-            animation: fadeIn 1s ease 1.5s forwards;
-        }
-
-        .nav-card {
-            background: rgba(139,115,85,0.1);
-            border: 3px solid #d4a574;
-            border-radius: 15px;
-            padding: 35px 25px;
-            text-decoration: none;
-            color: #5a4636;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            flex: 1;
-            min-width: 0;
-        }
-
-        .nav-card::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 12px;
-            background: rgba(255,223,186,0.8);
-            border-left: 1px dashed rgba(139,115,85,0.4);
-            border-right: 1px dashed rgba(139,115,85,0.4);
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .nav-card:hover {
-            transform: translateY(-10px) scale(1.05) rotate(1deg);
-            border-color: #8B7355;
-            box-shadow: 0 15px 40px rgba(139,115,85,0.4);
-            background: rgba(139,115,85,0.2);
-        }
-
-        .card-icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            display: block;
-            animation: bounce 2s infinite;
-        }
-
-        .nav-card:nth-child(1) .card-icon { animation-delay: 0s; }
-        .nav-card:nth-child(2) .card-icon { animation-delay: 0.2s; }
-        .nav-card:nth-child(3) .card-icon { animation-delay: 0.4s; }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .card-title {
-            font-size: 1.4rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-family: 'Indie Flower', cursive;
-        }
-
-        .card-desc {
-            font-size: 1rem;
-            opacity: 0.8;
-            line-height: 1.5;
-        }
-
-        /* Floating Hearts */
-        .floating-hearts {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .heart {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0;
-            animation: floatHeart 8s ease-in infinite;
-        }
-
-        @keyframes floatHeart {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-cards {
-                gap: 15px;
-                padding: 0 10px;
-            }
-
-            .nav-card {
-                padding: 28px 20px;
-            }
-
-            .background-deco {
-                font-size: 40px;
-            }
-
-            .hero-content {
-                max-width: 700px;
-                padding: 45px 35px;
-            }
-
-            .main-title {
-                font-size: 3rem;
-            }
-
-            .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .description {
-                font-size: 1.05rem;
-            }
-
-            .card-icon {
-                font-size: 2.8rem;
-            }
-
-            .card-title {
-                font-size: 1.15rem;
-            }
-
-            .card-desc {
-                font-size: 0.9rem;
-            }
-
-            .doodle {
-                font-size: 20px !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-content {
-                padding: 35px 20px;
-            }
-
-            .nav-cards {
-                gap: 12px;
-                padding: 0 5px;
-            }
-
-            .main-title {
-                font-size: 2.5rem;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .description {
-                font-size: 1rem;
-            }
-
-            .nav-card {
-                padding: 25px 15px;
-            }
-
-            .card-icon {
-                font-size: 2.5rem;
-            }
-
-            .card-title {
-                font-size: 1.1rem;
-            }
-
-            .card-desc {
-                font-size: 0.85rem;
-            }
-        }
-    </style>
+@keyframes fade{
+  from{opacity:0;transform:scale(.95)}
+  to{opacity:1;transform:scale(1)}
+}
+</style>
 </head>
+
 <body>
-    <!-- Animated Background -->
-    <div class="bg-gradient"></div>
-    
-    <!-- Particles -->
-    <div class="particles" id="particles"></div>
 
-    <!-- Photo Bubbles -->
-    <div class="photo-bubble bubble1"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=200" alt="mountain"></div>
-    <div class="photo-bubble bubble2"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=200" alt="trail"></div>
-    <div class="photo-bubble bubble3"><img src="https://images.unsplash.com/photo-1519904981063-b0cf448d479e?w=200" alt="camping"></div>
-    <div class="photo-bubble bubble4"><img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=200" alt="sunrise"></div>
-    <div class="photo-bubble bubble5"><img src="https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=200" alt="view"></div>
-    <div class="photo-bubble bubble6"><img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=200" alt="adventure"></div>
+<div class="particles" id="particles"></div>
 
-    <!-- Background Decorations -->
-    <div class="background-deco bg-mountain1">⛰️</div>
-    <div class="background-deco bg-mountain2">🏔️</div>
-    <div class="background-deco bg-star1">⭐</div>
-    <div class="background-deco bg-star2">✨</div>
-    <div class="background-deco bg-heart1">❤️</div>
-    <div class="background-deco bg-heart2">💕</div>
-    
-    <!-- Floating Hearts -->
-    <div class="floating-hearts" id="floatingHearts"></div>
+<!-- PHOTO BUBBLES -->
+<div class="bubbles">
+  <div class="bubble b1"><img src="foto1.jpg"></div>
+  <div class="bubble b2"><img src="foto2.jpg"></div>
+  <div class="bubble b3"><img src="foto3.jpg"></div>
+  <div class="bubble b4"><img src="foto4.jpg"></div>
+  <div class="bubble b5"><img src="foto5.jpg"></div>
+  <div class="bubble b6"><img src="foto1.jpg"></div>
+</div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="hero-content">
-            <div class="doodle doodle1">⛰️</div>
-            <div class="doodle doodle2">✨</div>
-            <div class="doodle doodle3">💪</div>
-            <div class="doodle doodle4">❤️</div>
+<div class="scrapbook">
+  <h1>Untuk pacarkuuu 💕</h1>
+  <div class="subtitle"><span class="typing" id="typing"></span></div>
 
-            <h1 class="main-title">Untuk pacarkuuu</h1>
-            
-            <div class="subtitle">
-                <span class="typing-text" id="typingText"></span>
-            </div>
-            
-            <div class="nav-cards">
-                <a href="gallery.html" class="nav-card">
-                    <span class="card-icon">📸</span>
-                    <h3 class="card-title">Galeri Pendakian</h3>
-                    <p class="card-desc">Koleksi momen petualanganmu di puncak-puncak tertinggi</p>
-                </a>
-                
-                <a href="about.html" class="nav-card">
-                    <span class="card-icon">💝</span>
-                    <h3 class="card-title">About You</h3>
-                    <p class="card-desc">Semua hal yang membuatku jatuh cinta padamu</p>
-                </a>
-            </div>
-        </div>
-    </div>
+  <div class="nav-cards">
+    <a href="gallery.html" class="nav-card">
+      <div class="card-icon">📸</div>
+      <div class="card-title">Galeri</div>
+      <div class="card-desc">Momen pendakian</div>
+    </a>
+    <a href="about.html" class="nav-card">
+      <div class="card-icon">💝</div>
+      <div class="card-title">About You</div>
+      <div class="card-desc">Tentang kamu</div>
+    </a>
+  </div>
+</div>
 
-    <script>
-        // Typing Effect
-        const phrases = [
-            "Setiap puncak yang kamu capai menginspirasi aku ✨",
-            "Kamu adalah petualangan terbaikku 🏔️",
-            "My Mountain Man, My Hero 💪",
-            "Together we can climb any mountain 🌟"
-        ];
-        
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typingSpeed = 80;
-        const deletingSpeed = 50;
-        const pauseTime = 2000;
+<script>
+/* typing */
+const texts=[
+  "My Mountain Man 🏔️",
+  "Setiap puncakmu kebanggaanku ✨",
+  "Petualang favoritku 💪",
+  "Love you to the top ❤️"
+];
+let i=0,j=0,del=false;
+const t=document.getElementById("typing");
+(function type(){
+  t.textContent=texts[i].substring(0,j);
+  del?j--:j++;
+  if(j===texts[i].length+1)del=true;
+  if(j===0&&del){del=false;i=(i+1)%texts.length}
+  setTimeout(type,del?50:80);
+})();
 
-        function typeText() {
-            const currentPhrase = phrases[phraseIndex];
-            const typingElement = document.getElementById('typingText');
-            
-            if (isDeleting) {
-                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-            
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                setTimeout(() => { isDeleting = true; }, pauseTime);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-            
-            const speed = isDeleting ? deletingSpeed : typingSpeed;
-            setTimeout(typeText, speed);
-        }
-        
-        setTimeout(typeText, 1000);
+/* particles */
+for(let i=0;i<40;i++){
+  const p=document.createElement("div");
+  p.className="particle";
+  p.style.left=Math.random()*100+"%";
+  p.style.animationDuration=2+Math.random()*3+"s";
+  document.getElementById("particles").appendChild(p);
+}
+</script>
 
-        // Create Particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            particle.style.animationDelay = Math.random() * 2 + 's';
-            document.getElementById('particles').appendChild(particle);
-        }
-
-        for (let i = 0; i < 50; i++) {
-            createParticle();
-        }
-
-        // Create Floating Hearts
-        function createFloatingHeart() {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            const hearts = ['❤️', '💕', '💖', '💗', '💙', '💜'];
-            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.style.left = Math.random() * 100 + '%';
-            heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
-            heart.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
-            document.getElementById('floatingHearts').appendChild(heart);
-            
-            setTimeout(() => heart.remove(), 8000);
-        }
-
-        setInterval(createFloatingHeart, 1500);
-
-        // Add sparkle effect on mouse move
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.95) {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = e.clientX + 'px';
-                sparkle.style.top = e.clientY + 'px';
-                sparkle.style.width = '4px';
-                sparkle.style.height = '4px';
-                sparkle.style.background = '#d4a574';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.zIndex = '999';
-                sparkle.style.animation = 'sparkle 0.6s ease-out forwards';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 600);
-            }
-        });
-
-        // Add sparkle animation
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes sparkle {
-                0% {
-                    transform: scale(0);
-                    opacity: 1;
-                }
-                100% {
-                    transform: scale(3);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
 </body>
 </html>
