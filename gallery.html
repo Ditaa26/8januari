@@ -231,12 +231,14 @@
       font-family: 'Patrick Hand', cursive;
       text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
     }
-
-    .photo-area {
+.photo-area {
       margin-top: 30px;
       display: grid;
       gap: 20px;
       position: relative;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .photo-area.one {
@@ -245,8 +247,10 @@
 
     .photo-area.one img {
       height: auto;
-      max-height: 380px;
+      max-height: 320px;
       object-fit: contain;
+      width: 100%;
+      max-width: 100%;
     }
 
     .photo-area.four,
