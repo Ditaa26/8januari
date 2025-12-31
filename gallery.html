@@ -375,6 +375,7 @@
     }
 
     /* Modal Slideshow */
+   /* Modal Slideshow */
     .modal {
       display: none;
       position: fixed;
@@ -382,9 +383,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.95);
+      background: #1a1a2e;
       z-index: 9999;
-      animation: fadeIn 0.3s ease;
+      transition: background 0.8s ease;
     }
 
     .modal.active {
@@ -395,32 +396,91 @@
 
     .slideshow-container {
       position: relative;
-      width: 90%;
-      max-width: 800px;
-      height: 80vh;
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
     }
 
     .slide-image {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 10px;
-      box-shadow: 0 10px 50px rgba(255, 255, 255, 0.2);
-      animation: slideZoom 0.8s ease;
-    }
+  width: 70vw;
+  max-width: 320px;
+  height: auto;
+  max-height: 45vh;
 
-    @keyframes slideZoom {
+  object-fit: contain;
+  border-radius: 15px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  position: absolute;
+}
+
+.slideshow-container::before {
+  content:
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+       "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+          "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+             "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+       "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+      "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  ";
+
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  font-family: 'Poppins', sans-serif;
+  font-size: 26px;
+  line-height: 3;
+  letter-spacing: 8px;
+  text-align: center;
+
+  color: rgba(255,255,255,0.08);
+  pointer-events: none;
+}
+
+
+
+    /* Animasi firework - zoom in dari kecil di posisi random */
+    @keyframes fireworkZoomIn {
       0% {
         opacity: 0;
-        transform: scale(0.5) rotate(-5deg);
+        transform: scale(0) rotate(0deg);
       }
-      50% {
-        opacity: 0.5;
-        transform: scale(1.1) rotate(2deg);
+      60% {
+        opacity: 1;
+        transform: scale(1.15) rotate(15deg);
       }
       100% {
         opacity: 1;
@@ -428,26 +488,17 @@
       }
     }
 
-    /* Firework Particles */
-    .firework {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    @keyframes explode {
+    /* Animasi fade out sebelum ganti foto */
+    @keyframes fadeOut {
       0% {
         opacity: 1;
-        transform: translate(0, 0) scale(1);
+        transform: scale(1);
       }
       100% {
         opacity: 0;
-        transform: translate(var(--tx), var(--ty)) scale(0);
+        transform: scale(0.5);
       }
     }
-
     /* Sparkle Effects */
     .sparkle-effect {
       position: absolute;
@@ -710,6 +761,50 @@
         padding: 8px 16px;
         font-size: 14px;
       }
+
+      /* =============================== */
+/* FIRE PHOTO SLIDESHOW EFFECT    */
+/* =============================== */
+.slide-image {
+  position: absolute;
+  opacity: 0;
+  animation: firePhoto 1.2s ease-out forwards;
+}
+
+@keyframes firePhoto {
+  0% {
+    opacity: 0;
+    transform: scale(0.2) rotate(-20deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.15) rotate(10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+.fade-out {
+  animation: fadePhoto 0.6s ease-in forwards;
+}
+
+@keyframes fadePhoto {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+.slide-counter {
+  display: none !important;
+}
+
+
     }
   </style>
 </head>
@@ -725,6 +820,9 @@
 <div class="photo-bubble bubble6"><img src="assets/1.jpeg" alt="memory"></div>
 <div class="photo-bubble bubble7"><img src="assets/2.jpeg" alt="memory"></div>
 <div class="photo-bubble bubble8"><img src="assets/3.jpeg" alt="memory"></div>
+<div class="photo-bubble bubble4"><img src="assets/4.jpeg" alt="memory"></div>
+<div class="photo-bubble bubble5"><img src="assets/5.jpeg" alt="memory"></div>
+
 
 <!-- Background Decorations -->
 <div class="background-deco bg-star1">★</div>
@@ -857,7 +955,7 @@ dan kenangan yang nggak bakal aku lupain karna first time!.`,
   },
 
   {
-    title: "Februri - drop",
+    title: "Februari - drop",
     text:
 `Aku masih inget rasa khawatir akuu, ampe gabisa tidurr tau huu.
 Dan aku bersyukur kamu mau dengerin aku untuk berobat kerumah sakit xxxx.
@@ -867,7 +965,7 @@ dan itu buat aku tenang.`,
   },
 
   {
-    title: "July - sepedah",
+    title: "Juli - sepedah",
     text:
 `Kamu mau bgt beli sepedah, walaupun sempet ragu karna harga tapi alhamdulillah jadi beli, dan berhasil menuntaskan 400 km
 Pelan-pelan, tapi kamu selesai.
@@ -923,17 +1021,19 @@ My mountain man. My hero. 💪⛰️`,
 
 // Slideshow photos
 const slideshowPhotos = [
-  "assets/1.jpeg",
-  "assets/2.jpeg",
-  "assets/3.jpeg",
-  "assets/4.jpeg",
-  "assets/5.jpeg",
-  "assets/1.jpeg",
-  "assets/2.jpeg",
-  "assets/3.jpeg",
-  "assets/4.jpeg",
-  "assets/5.jpeg"
+  "assets/6.jpeg",
+  "assets/7.jpeg",
+  "assets/8.jpeg",
+  "assets/9.jpeg",
+  "assets/10.jpeg",
+  "assets/6.jpeg",
+  "assets/7.jpeg",
+  "assets/8.jpeg",
+  "assets/9.jpeg",
+  "assets/10.jpeg"
 ];
+
+
 
 let index = 0;
 let slideIndex = 0;
@@ -1020,22 +1120,34 @@ function showSlide() {
   const img = document.getElementById("slideImage");
   const counter = document.getElementById("slideCounter");
   const container = document.querySelector(".slideshow-container");
-  
-  // Trigger animation ulang
-  img.style.animation = 'none';
-  setTimeout(() => {
-    img.style.animation = '';
-  }, 10);
-  
+
+  // HILANGKAN FOTO SEBELUMNYA
+  img.classList.remove("fade-out");
+  img.style.animation = "none";
+
+  // Random posisi (tetap di area modal)
+  const imgSize = Math.min(container.offsetWidth * 0.7, 320);
+
+const maxX = container.offsetWidth - imgSize;
+const maxY = container.offsetHeight - imgSize;
+
+
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
+
+  img.style.left = randomX + "px";
+  img.style.top = randomY + "px";
+
+  // Set gambar baru
   img.src = slideshowPhotos[slideIndex];
   counter.textContent = `${slideIndex + 1} / ${slideshowPhotos.length}`;
-  
-  // Create fireworks effect
-  createFireworks(container);
-  
-  // Create sparkles
-  createSparkles(container);
+
+  // Trigger animasi ulang
+  requestAnimationFrame(() => {
+    img.style.animation = "firePhoto 1.2s ease-out forwards";
+  });
 }
+
 
 function createFireworks(container) {
   const colors = ['#FFD700', '#FF69B4', '#00CED1', '#FF6347', '#98FB98', '#DDA0DD'];
@@ -1091,9 +1203,17 @@ function createSparkles(container) {
 }
 
 function nextSlide() {
-  slideIndex = (slideIndex + 1) % slideshowPhotos.length;
-  showSlide();
+  const img = document.getElementById("slideImage");
+
+  // Fade out dulu
+  img.classList.add("fade-out");
+
+  setTimeout(() => {
+    slideIndex = (slideIndex + 1) % slideshowPhotos.length;
+    showSlide();
+  }, 500);
 }
+
 
 function startSlideshow() {
   slideInterval = setInterval(nextSlide, SLIDESHOW_SPEED); // Gunakan variable yang bisa diubah
@@ -1117,8 +1237,11 @@ document.addEventListener("keydown", function(e) {
   }
 });
 
+
 renderPage();
+
+
 </script>
 
 </body>
-</html>
+</html>  

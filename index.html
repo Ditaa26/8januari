@@ -369,12 +369,22 @@
             }
         }
 
+
+        
         /* Responsive */
         @media (max-width: 768px) {
-            .photo-bubble {
-                width: 60px !important;
-                height: 60px !important;
-            }
+  .nav-cards {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 10px;
+  }
+
+  .nav-card {
+    flex: 1;
+    max-width: 220px;
+  }
+}
 
             .background-deco {
                 font-size: 40px;
@@ -404,19 +414,28 @@
                 font-size: 1.05rem;
             }
 
-            .nav-cards {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
+            .nav-card {
+    flex: 0 0 220px; /* ukuran card di HP */
+    padding: 22px 18px;
+    scroll-snap-align: center;
+  }
 
             .card-icon {
-                font-size: 3rem;
-            }
+    font-size: 2.5rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+  }
+
+  .card-desc {
+    font-size: 0.95rem;
+  }
 
             .doodle {
                 font-size: 20px !important;
             }
-        }
+        
 
         @media (max-width: 480px) {
             .hero-content {
@@ -475,29 +494,17 @@
             <div class="doodle doodle3">💪</div>
             <div class="doodle doodle4">❤️</div>
 
-            <h1 class="main-title">Untuk Pendaki Hatiku ⛰️</h1>
+            <h1 class="main-title">Untuk pacarkuuu</h1>
             
             <div class="subtitle">
                 <span class="typing-text" id="typingText"></span>
             </div>
-            
-            <p class="description">
-                Seperti kamu yang selalu berani mendaki gunung tertinggi,
-                kamu juga yang mengajarkan aku arti kegigihan dan keberanian.
-                Website ini ku buat khusus untukmu, my adventure partner! 💙
-            </p>
             
             <div class="nav-cards">
                 <a href="gallery.html" class="nav-card">
                     <span class="card-icon">📸</span>
                     <h3 class="card-title">Galeri Pendakian</h3>
                     <p class="card-desc">Koleksi momen petualanganmu di puncak-puncak tertinggi</p>
-                </a>
-                
-                <a href="moments.html" class="nav-card">
-                    <span class="card-icon">💫</span>
-                    <h3 class="card-title">Our Moments</h3>
-                    <p class="card-desc">Timeline kenangan indah yang kita lalui bersama</p>
                 </a>
                 
                 <a href="about.html" class="nav-card">
