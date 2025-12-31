@@ -140,6 +140,7 @@
       position: relative;
       animation: fadeIn 0.8s ease;
       border: 3px solid #d4a574;
+      overflow: hidden;
     }
 
     .scrapbook::before {
@@ -231,7 +232,8 @@
       font-family: 'Patrick Hand', cursive;
       text-shadow: 1px 1px 0 rgba(255,255,255,0.8);
     }
-.photo-area {
+
+    .photo-area {
       margin-top: 30px;
       display: grid;
       gap: 20px;
@@ -263,10 +265,13 @@
       position: relative;
       transform: rotate(0deg);
       transition: transform 0.3s ease;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .photo-wrapper:hover {
-      transform: scale(1.05) rotate(2deg);
+      transform: scale(1.03) rotate(1deg);
       z-index: 10;
     }
 
@@ -286,19 +291,21 @@
 
     .photo-area img {
       width: 100%;
-      height: 220px;
+      max-width: 100%;
+      height: 200px;
       object-fit: cover;
       border-radius: 4px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 0 8px #fff, 0 0 0 9px #d4a574;
       border: 2px solid #fff;
       background: #fff;
       padding: 8px;
+      display: block;
     }
     
     .photo-area.five img:first-child,
     .photo-area.six img:first-child {
       grid-column: span 2;
-      height: 260px;
+      height: 220px;
     }
 
     .sticker {
@@ -349,6 +356,156 @@
     button:active {
       transform: translateY(0);
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Slideshow Button */
+    .slideshow-btn {
+      width: 100%;
+      margin-top: 20px;
+      background: linear-gradient(135deg, #d4a574, #e6b98a);
+      border: 2px solid #8B7355;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .slideshow-btn:hover {
+      background: linear-gradient(135deg, #e6b98a, #f4d4a8);
+    }
+
+    /* Modal Slideshow */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slideshow-container {
+      position: relative;
+      width: 90%;
+      max-width: 800px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 10px 50px rgba(255, 255, 255, 0.2);
+      animation: slideZoom 0.8s ease;
+    }
+
+    @keyframes slideZoom {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-5deg);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(1.1) rotate(2deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    /* Firework Particles */
+    .firework {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    @keyframes explode {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(0);
+      }
+    }
+
+    /* Sparkle Effects */
+    .sparkle-effect {
+      position: absolute;
+      pointer-events: none;
+      font-size: 30px;
+      animation: sparkleFloat 1.5s ease-out forwards;
+    }
+
+    @keyframes sparkleFloat {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(0);
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(-50px) scale(1.5) rotate(180deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.5) rotate(360deg);
+      }
+    }
+
+    .slide-counter {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.9);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-family: 'Patrick Hand', cursive;
+      font-size: 18px;
+      color: #5a4636;
+      font-weight: bold;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-size: 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      z-index: 10000;
+    }
+
+    .close-modal:hover {
+      background: #fff;
+      transform: scale(1.1);
     }
 
     @keyframes fadeIn {
@@ -465,18 +622,18 @@
       }
 
       .photo-area.one img {
-        max-height: 300px;
+        max-height: 280px;
       }
 
       .photo-area img {
-        height: 180px;
+        height: 160px;
         padding: 6px;
         box-shadow: 0 6px 15px rgba(0,0,0,0.3), 0 0 0 6px #fff, 0 0 0 7px #d4a574;
       }
 
       .photo-area.five img:first-child,
       .photo-area.six img:first-child {
-        height: 200px;
+        height: 180px;
       }
 
       .photo-wrapper::before {
@@ -501,6 +658,22 @@
         font-size: 15px;
         border-radius: 20px;
       }
+
+      .slideshow-container {
+        width: 95%;
+        height: 70vh;
+      }
+
+      .slide-counter {
+        font-size: 16px;
+        padding: 8px 16px;
+      }
+
+      .close-modal {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+      }
     }
 
     @media (max-width: 400px) {
@@ -521,12 +694,12 @@
       }
 
       .photo-area img {
-        height: 150px;
+        height: 140px;
       }
 
       .photo-area.five img:first-child,
       .photo-area.six img:first-child {
-        height: 180px;
+        height: 160px;
       }
 
       .nav {
@@ -577,6 +750,15 @@
 <div class="background-deco bg-sparkle5">💫</div>
 <div class="background-deco bg-sparkle6">⭐</div>
 
+<!-- Slideshow Modal -->
+<div class="modal" id="slideshowModal">
+  <button class="close-modal" onclick="closeSlideshow()">✕</button>
+  <div class="slideshow-container">
+    <div class="slide-counter" id="slideCounter">1 / 10</div>
+    <img class="slide-image" id="slideImage" src="" alt="slideshow">
+  </div>
+</div>
+
 <div class="scrapbook">
   <div class="doodle star1">✦</div>
   <div class="doodle star2">✧</div>
@@ -608,6 +790,11 @@
   <h1 id="title"></h1>
   <p id="text"></p>
   <div id="photos" class="photo-area"></div>
+  
+  <!-- Slideshow Button (hanya tampil di halaman penutup) -->
+  <button class="slideshow-btn" id="slideshowBtn" onclick="openSlideshow()" style="display: none;">
+    📸 View Photo Slideshow
+  </button>
 
   <div class="nav">
     <button onclick="prevPage()">← Prev</button>
@@ -616,6 +803,17 @@
 </div>
 
 <script>
+// ========================================
+// PENGATURAN SLIDESHOW - UBAH DI SINI!
+// ========================================
+const SLIDESHOW_SPEED = 1000; // Dalam milidetik (ms)
+// 1000 ms = 1 detik
+// 2000 ms = 2 detik
+// 3000 ms = 3 detik
+// 4000 ms = 4 detik (default)
+// 5000 ms = 5 detik
+// dst...
+
 const pages = [
   {
     title: "3 November 2024",
@@ -697,10 +895,49 @@ banyak kalimat yg keluar kalau kamu mau ke rinjani,
 Kamu berhasil sayangg !!!!!
 Selamatt ya, aku ikut seneng bgtttt, walaupun belum bisa ikut (cry).`,
     photos: ["assets/1.jpeg"]
+  },
+
+  {
+    title: "Untuk Kamu 💙",
+    text:
+`Gimana? udh baca kan beberapa yang menurutku nandain bagaimana kamu berkembang hihihihihi
+
+Diumur kamu yang ke 20-21 jadi saksi gimana kamu berkembang.
+Dari stres sama perkuliahan (karna belum terbiasa) terus dapet sertifikat forklift.
+
+Dilanjut diumur 21 walaupun diawal tahun sempet drop tapi sampe sekarang udh sembuh, udh lebih lebih kuat, lanjut nyelesaiin 400km bersepeda yang sampe sekarang malah lebih seneng bersepeda, perkuliahaan juga udh bisa menyesuaikan semuanya, udh bisa ngoding sekarang lebih paham, maju jauh dari sebelumnya dan terakhir sampai puncak Rinjani.
+
+Setiap langkah yang kamu ambil,
+setiap keputusan yang kamu buat,
+aku lihat kamu jadi versi yang lebih kuat dari diri kamu sebelumnya.
+
+Aku bangga sama kamu.
+Bukan karena pencapaianmu,
+tapi karena kamu nggak pernah menyerah.
+
+Thank you for being my inspiration.
+My mountain man. My hero. 💪⛰️`,
+    photos: []
   }
 ];
 
+// Slideshow photos
+const slideshowPhotos = [
+  "assets/1.jpeg",
+  "assets/2.jpeg",
+  "assets/3.jpeg",
+  "assets/4.jpeg",
+  "assets/5.jpeg",
+  "assets/1.jpeg",
+  "assets/2.jpeg",
+  "assets/3.jpeg",
+  "assets/4.jpeg",
+  "assets/5.jpeg"
+];
+
 let index = 0;
+let slideIndex = 0;
+let slideInterval;
 
 const stickers = ['⭐', '🌟', '💫', '✨', '🎯', '🏔️', '🚴', '💪', '🎉', '❤️'];
 
@@ -710,6 +947,14 @@ function renderPage() {
 
   const photoBox = document.getElementById("photos");
   photoBox.innerHTML = "";
+
+  // Show slideshow button hanya di halaman terakhir (penutup)
+  const slideshowBtn = document.getElementById("slideshowBtn");
+  if (index === pages.length - 1) {
+    slideshowBtn.style.display = "block";
+  } else {
+    slideshowBtn.style.display = "none";
+  }
 
   if (pages[index].photos.length === 6) {
     photoBox.className = "photo-area six";
@@ -729,7 +974,6 @@ function renderPage() {
     img.src = src;
     wrapper.appendChild(img);
 
-    // Add random sticker
     if (Math.random() > 0.4 && pages[index].photos.length > 1) {
       const sticker = document.createElement("div");
       sticker.className = "sticker";
@@ -757,6 +1001,121 @@ function prevPage() {
     renderPage();
   }
 }
+
+function openSlideshow() {
+  const modal = document.getElementById("slideshowModal");
+  modal.classList.add("active");
+  slideIndex = 0;
+  showSlide();
+  startSlideshow();
+}
+
+function closeSlideshow() {
+  const modal = document.getElementById("slideshowModal");
+  modal.classList.remove("active");
+  stopSlideshow();
+}
+
+function showSlide() {
+  const img = document.getElementById("slideImage");
+  const counter = document.getElementById("slideCounter");
+  const container = document.querySelector(".slideshow-container");
+  
+  // Trigger animation ulang
+  img.style.animation = 'none';
+  setTimeout(() => {
+    img.style.animation = '';
+  }, 10);
+  
+  img.src = slideshowPhotos[slideIndex];
+  counter.textContent = `${slideIndex + 1} / ${slideshowPhotos.length}`;
+  
+  // Create fireworks effect
+  createFireworks(container);
+  
+  // Create sparkles
+  createSparkles(container);
+}
+
+function createFireworks(container) {
+  const colors = ['#FFD700', '#FF69B4', '#00CED1', '#FF6347', '#98FB98', '#DDA0DD'];
+  const numParticles = 30;
+  
+  for (let i = 0; i < numParticles; i++) {
+    const firework = document.createElement('div');
+    firework.className = 'firework';
+    
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    firework.style.background = color;
+    firework.style.boxShadow = `0 0 10px ${color}`;
+    
+    // Random position di tengah
+    const startX = container.offsetWidth / 2;
+    const startY = container.offsetHeight / 2;
+    firework.style.left = startX + 'px';
+    firework.style.top = startY + 'px';
+    
+    // Random direction
+    const angle = (Math.PI * 2 * i) / numParticles;
+    const velocity = 100 + Math.random() * 200;
+    const tx = Math.cos(angle) * velocity;
+    const ty = Math.sin(angle) * velocity;
+    
+    firework.style.setProperty('--tx', tx + 'px');
+    firework.style.setProperty('--ty', ty + 'px');
+    firework.style.animation = `explode ${0.8 + Math.random() * 0.4}s ease-out forwards`;
+    
+    container.appendChild(firework);
+    
+    setTimeout(() => firework.remove(), 1200);
+  }
+}
+
+function createSparkles(container) {
+  const sparkleEmojis = ['✨', '💫', '⭐', '🌟', '💖', '💕', '❤️', '💙'];
+  const numSparkles = 8;
+  
+  for (let i = 0; i < numSparkles; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle-effect';
+    sparkle.textContent = sparkleEmojis[Math.floor(Math.random() * sparkleEmojis.length)];
+    
+    sparkle.style.left = Math.random() * container.offsetWidth + 'px';
+    sparkle.style.top = (container.offsetHeight / 2) + (Math.random() * 100 - 50) + 'px';
+    sparkle.style.animationDelay = Math.random() * 0.3 + 's';
+    
+    container.appendChild(sparkle);
+    
+    setTimeout(() => sparkle.remove(), 1500);
+  }
+}
+
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % slideshowPhotos.length;
+  showSlide();
+}
+
+function startSlideshow() {
+  slideInterval = setInterval(nextSlide, SLIDESHOW_SPEED); // Gunakan variable yang bisa diubah
+}
+
+function stopSlideshow() {
+  clearInterval(slideInterval);
+}
+
+// Close modal when clicking outside image
+document.getElementById("slideshowModal").addEventListener("click", function(e) {
+  if (e.target === this) {
+    closeSlideshow();
+  }
+});
+
+// Close modal with Escape key
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Escape") {
+    closeSlideshow();
+  }
+});
 
 renderPage();
 </script>
