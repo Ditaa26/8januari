@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Scrapbook 📖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    background:#f3efe8;
+    font-family:'Patrick Hand', cursive;
+    color:#3a3a3a;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* BOOK */
+.book{
+    width:90%;
+    max-width:900px;
+    height:80vh;
+    background:#fff;
+    border-radius:25px;
+    box-shadow:0 30px 60px rgba(0,0,0,.2);
+    position:relative;
+    overflow:hidden;
+}
+
+/* PAGE */
+.page{
+    position:absolute;
+    inset:0;
+    padding:70px 60px 90px;
+    opacity:0;
+    transform:translateX(40px);
+    transition:.6s ease;
+    pointer-events:none;
+}
+
+.page.active{
+    opacity:1;
+    transform:translateX(0);
+    pointer-events:auto;
+}
+
+/* TAPE */
+.page::before{
+    content:"";
+    position:absolute;
+    top:-15px;
+    left:40%;
+    width:120px;
+    height:30px;
+    background:rgba(255,224,130,.7);
+    transform:rotate(-3deg);
+}
+
+/* TEXT */
+.page h1,.page h2{
+    font-family:'Playfair Display', serif;
+    margin-bottom:16px;
+}
+.page h1{font-size:3rem}
+.page h2{font-size:2.4rem}
+.page p{
+    font-size:1.35rem;
+    line-height:1.9;
+    max-width:700px;
+}
+
+/* PHOTO AREA (NGISI KOSONG) */
+.photo-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:35px;
+}
+
+.polaroid-big{
+    width:360px;
+    background:white;
+    padding:14px 14px 34px;
+    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    border-radius:6px;
+    transform:rotate(-2deg);
+}
+
+.polaroid-big img{
+    width:100%;
+    border-radius:4px;
+}
+
+.polaroid-big span{
+    display:block;
+    text-align:center;
+    margin-top:12px;
+    font-size:1.2rem;
+    opacity:.7;
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.story-text {
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+    margin-top: 30px;
+}
+
+.photo-grid {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    height: 60%;
+}
+
+.photo-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+
+/* CHAT */
+.chat{
+    background:#e9f0ff;
+    padding:20px 25px;
+    border-radius:20px;
+    max-width:420px;
+}
+.date{opacity:.7;margin-top:8px}
+
+/* NAV */
+.nav{
+    position:absolute;
+    bottom:25px;
+    left:0;right:0;
+    display:flex;
+    justify-content:space-between;
+    padding:0 40px;
+}
+button{
+    background:#333;
+    color:#fff;
+    border:none;
+    padding:12px 28px;
+    border-radius:30px;
+    font-size:1.05rem;
+    cursor:pointer;
+}
+button:disabled{opacity:.4;cursor:not-allowed}
+
+@media(max-width:768px){
+    .page{padding:60px 30px 90px}
+    .page h1{font-size:2.2rem}
+    .page h2{font-size:1.9rem}
+    .page p{font-size:1.15rem}
+    .polaroid-big{width:260px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+    <div class="page">
+    <h1>3 November 2024</h1>
+
+    <div class="story-text">
+        <p>
+            Di hari itu, kamu cerita gimana beratnya hidup yang lagi kamu jalanin.
+            Penyesuaian sama jadwal kuliah, tugas yang datang bertubi-tubi,
+            dan di waktu yang sama kamu masih harus ngadepin seleksi futsal.
+        </p>
+
+        <p>
+            Di masa itu juga kamu kepilih buat seleksi sertifikat forklift.
+            Mungkin karena dua tahun sebelumnya hidup terasa lebih bebas,
+            jadi fase ini benar-benar bikin kamu capek secara fisik dan mental.
+        </p>
+
+        <p>
+            Itu pertama kalinya aku lihat kamu se-stres itu.
+            Aku kebayang capeknya kamu, apalagi posisi lagi mau UAS.
+        </p>
+
+        <p>
+            Tapi hasilnya?
+            Nilai kuliahmu bagus,
+            dan di tahun 2024 kamu berhasil dapetin sertifikat forklift!.
+        </p>
+    </div>
+</div>
+
+    <!-- COVER -->
+    <div class="page">
+    <h1>A Year of Your Steps 🚶‍♂️</h1>
+    <p>
+        Tahun ini kamu banyak melangkah.  
+        Bukan cuma naik gunung, tapi juga mengalahkan batas dirimu sendiri.
+    </p>
+
+    <div class="photo-grid">
+        <img src="steps1.jpg">
+        <img src="steps2.jpg">
+        <img src="steps3.jpg">
+        <img src="steps4.jpg">
+    </div>
+</div>
+
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <h2>Semuanya Dimulai dari Chat Ini</h2>
+        <div class="chat">“Aku mau ke Rinjani.”</div>
+        <div class="date">3 Juli 2024</div>
+
+        <div class="photo-area">
+            <div class="polaroid-big">
+                <img src="chat.jpg" alt="chat">
+                <span>Awal Cerita</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <h2>Tahun Ini, Kamu Banyak Melangkah</h2>
+        <p>
+            Kamu tidak banyak bicara soal rencana.
+            Tapi kamu jalan. Pelan, konsisten,
+            dan tidak berhenti di tengah.
+        </p>
+
+        <div class="photo-area">
+            <div class="polaroid-big">
+                <img src="process.jpg" alt="process">
+                <span>Pelan Tapi Jalan</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page">
+        <h2>Rinjani — Kamu Sampai</h2>
+        <p>
+            Gunung itu bukan lagi sekadar rencana.
+            Kamu berdiri di sana,
+            membawa semua lelah yang akhirnya terbayar.
+        </p>
+
+        <div class="photo-area">
+            <div class="polaroid-big">
+                <img src="rinjani.jpg" alt="rinjani">
+                <span>Rinjani, 2024</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 4 -->
+    <div class="page">
+        <h2>100 KM Fixie 🚴</h2>
+        <p>
+            Bukan cuma gunung.
+            Kamu mengayuh sejauh yang dulu terasa mustahil.
+            Medali itu bukan soal jarak,
+            tapi soal mental yang tidak menyerah.
+        </p>
+
+        <div class="photo-area">
+            <div class="polaroid-big">
+                <img src="fixie.jpg" alt="fixie">
+                <span>100 KM Fixie</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- LAST -->
+    <div class="page">
+        <h2>Untuk Kamu</h2>
+        <p>
+            Tahun ini, kamu banyak melangkah.
+            Dan semoga halaman berikutnya
+            selalu lebih berani dari yang sebelumnya.
+        </p>
+
+        <div class="photo-area">
+            <div class="polaroid-big">
+                <img src="ending.jpg" alt="ending">
+                <span>To Be Continued…</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- NAV -->
+    <div class="nav">
+        <button id="prevBtn">← Prev</button>
+        <button id="nextBtn">Next →</button>
+    </div>
+
+</div>
+
+<script>
+const pages=document.querySelectorAll('.page');
+let current=0;
+
+function update(){
+    pages.forEach((p,i)=>p.classList.toggle('active',i===current));
+    prevBtn.disabled=current===0;
+    nextBtn.disabled=current===pages.length-1;
+}
+prevBtn.onclick=()=>{if(current>0){current--;update()}};
+nextBtn.onclick=()=>{if(current<pages.length-1){current++;update()}};
+update();
+</script>
+
+</body>
+</html>

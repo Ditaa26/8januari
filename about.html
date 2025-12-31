@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About You 💝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #434343 0%, #000000 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid white;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #000;
+            transform: translateX(-5px);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease;
+        }
+
+        .profile-emoji {
+            font-size: 8rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .profile-section h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #f093fb, #f5576c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .profile-section p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        /* Qualities Grid */
+        .qualities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .quality-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .quality-card:nth-child(1) { animation-delay: 0.2s; }
+        .quality-card:nth-child(2) { animation-delay: 0.4s; }
+        .quality-card:nth-child(3) { animation-delay: 0.6s; }
+        .quality-card:nth-child(4) { animation-delay: 0.8s; }
+        .quality-card:nth-child(5) { animation-delay: 1s; }
+        .quality-card:nth-child(6) { animation-delay: 1.2s; }
+
+        .quality-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+            border-color: #f5576c;
+            box-shadow: 0 20px 40px rgba(245, 87, 108, 0.3);
+        }
+
+        .quality-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .quality-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #f5576c;
+        }
+
+        .quality-card p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        /* Love Letter Section */
+        .love-letter {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.2), rgba(245, 87, 108, 0.2));
+            padding: 50px;
+            border-radius: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-letter::before {
+            content: '💌';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .love-letter h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .love-letter p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            text-align: right;
+            font-size: 1.3rem;
+            margin-top: 30px;
+            font-style: italic;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Stars Background */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .profile-section h1 {
+                font-size: 2rem;
+            }
+            .profile-emoji {
+                font-size: 5rem;
+            }
+            .qualities {
+                grid-template-columns: 1fr;
+            }
+            .love-letter {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <a href="index.html" class="back-btn">← Kembali</a>
+
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-emoji">🧗‍♂️</div>
+            <h1>My Mountain Man</h1>
+            <p>Orang yang paling aku sayang di dunia ini 💙</p>
+        </div>
+
+        <div class="qualities">
+            <div class="quality-card">
+                <div class="quality-icon">💪</div>
+                <h3>Kuat & Tangguh</h3>
+                <p>
+                    Seperti gunung yang kokoh, kamu selalu kuat menghadapi
+                    apapun. Kegigihan dan semangatmu menginspirasi aku setiap hari.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">🌟</div>
+                <h3>Pemberani</h3>
+                <p>
+                    Keberanian kamu dalam menaklukkan setiap puncak mengajarkan
+                    aku untuk tidak takut menghadapi tantangan dalam hidup.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">❤️</div>
+                <h3>Caring & Perhatian</h3>
+                <p>
+                    Di balik keperkasaanmu, kamu adalah orang yang paling
+                    perhatian dan peduli. Kamu selalu ada saat aku butuh.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">🎯</div>
+                <h3>Fokus & Tekun</h3>
+                <p>
+                    Cara kamu fokus mencapai tujuan, baik di gunung maupun
+                    kehidupan, membuatku bangga jadi pasangan kamu.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">😊</div>
+                <h3>Ceria & Positif</h3>
+                <p>
+                    Senyum dan energi positifmu bisa bikin hari-hariku jadi
+                    lebih cerah, bahkan di saat paling sulit sekalipun.
+                </p>
+            </div>
+
+            <div class="quality-card">
+                <div class="quality-icon">🌈</div>
+                <h3>Humble & Down to Earth</h3>
+                <p>
+                    Meski sudah menaklukkan banyak puncak, kamu tetap rendah hati.
+                    Itu salah satu hal yang paling aku cintai dari kamu.
+                </p>
+            </div>
+        </div>
+
+        <div class="love-letter">
+            <h2>Untukmu, Sayang 💝</h2>
+            <p>
+                Terima kasih sudah menjadi bagian terpenting dalam hidupku.
+                Setiap langkah yang kita lalui bersama, setiap gunung yang kita taklukkan,
+                semua menjadi kenangan berharga yang tak akan pernah aku lupakan.
+            </p>
+            <p>
+                Kamu mengajarkan aku arti keberanian, kegigihan, dan cinta yang tulus.
+                Seperti gunung yang selalu menjulang tinggi, aku berharap hubungan kita
+                akan terus kokoh dan bertahan menghadapi apapun.
+            </p>
+            <p>
+                Aku sayang kamu bukan karena kamu sempurna, tapi karena kamu adalah
+                dirimu yang apa adanya. Kamu adalah rumah, kamu adalah petualangan,
+                kamu adalah segalanya.
+            </p>
+            <p>
+                Mari kita terus mendaki gunung-gunung dalam hidup ini bersama,
+                saling support, saling menguatkan, dan saling menyayangi.
+            </p>
+            <div class="signature">
+                Dengan cinta, <br>
+                Pacar kamu yang paling sayang 💕
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create stars background
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 50;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+
+        // Floating hearts effect
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.fontSize = '2rem';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.bottom = '-50px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '10';
+            heart.style.animation = 'floatUp 5s ease-in forwards';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-${window.innerHeight + 100}px) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        setInterval(createHeart, 2000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Mountain Man ⛰️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #0f0c29;
+            position: relative;
+        }
+
+        /* Animated Gradient Background */
+        .bg-gradient {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #1a1a2e);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 0;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Hero Content */
+        .hero-content {
+            text-align: center;
+            color: white;
+            max-width: 900px;
+        }
+
+        /* Main Title with Glow */
+        .main-title {
+            font-size: 5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 5s ease infinite;
+            text-shadow: 0 0 80px rgba(255, 107, 107, 0.5);
+            opacity: 0;
+            animation: fadeInScale 1.5s ease forwards, gradientText 5s ease infinite;
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Subtitle with Typing Effect */
+        .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #feca57;
+            opacity: 0;
+            animation: fadeIn 1s ease 0.5s forwards;
+            min-height: 60px;
+        }
+
+        .typing-text {
+            border-right: 3px solid #feca57;
+            padding-right: 5px;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { border-color: transparent; }
+            51%, 100% { border-color: #feca57; }
+        }
+
+        /* Description */
+        .description {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 50px;
+            color: rgba(255, 255, 255, 0.9);
+            opacity: 0;
+            animation: fadeIn 1s ease 1s forwards;
+        }
+
+        /* Navigation Cards */
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+
+        .nav-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-card:hover::before {
+            left: 100%;
+        }
+
+        .nav-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            border-color: #ff6b6b;
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.4),
+                        0 0 40px rgba(255, 107, 107, 0.3);
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        .nav-card:nth-child(1) .card-icon { animation-delay: 0s; }
+        .nav-card:nth-child(2) .card-icon { animation-delay: 0.2s; }
+        .nav-card:nth-child(3) .card-icon { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.5;
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0;
+            animation: floatHeart 8s ease-in infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Mountain Silhouette */
+        .mountain-silhouette {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .mountain-layer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(15, 12, 41, 0.8), transparent);
+        }
+
+        .mountain-shape {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .mountain-shape:nth-child(1) {
+            left: -10%;
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-bottom: 400px solid rgba(255, 255, 255, 0.03);
+            animation: sway 20s ease-in-out infinite;
+        }
+
+        .mountain-shape:nth-child(2) {
+            left: 30%;
+            width: 0;
+            height: 0;
+            border-left: 250px solid transparent;
+            border-right: 250px solid transparent;
+            border-bottom: 350px solid rgba(255, 255, 255, 0.05);
+            animation: sway 15s ease-in-out infinite reverse;
+        }
+
+        .mountain-shape:nth-child(3) {
+            right: -5%;
+            width: 0;
+            height: 0;
+            border-left: 280px solid transparent;
+            border-right: 280px solid transparent;
+            border-bottom: 380px solid rgba(255, 255, 255, 0.04);
+            animation: sway 18s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            .description {
+                font-size: 1.1rem;
+            }
+            .nav-cards {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-gradient"></div>
+    
+    <!-- Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Floating Hearts -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <!-- Mountain Silhouette -->
+    <div class="mountain-silhouette">
+        <div class="mountain-layer">
+            <div class="mountain-shape"></div>
+            <div class="mountain-shape"></div>
+            <div class="mountain-shape"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="main-title">Untuk Pendaki Hatiku ⛰️</h1>
+            
+            <div class="subtitle">
+                <span class="typing-text" id="typingText"></span>
+            </div>
+            
+            <p class="description">
+                Seperti kamu yang selalu berani mendaki gunung tertinggi,
+                kamu juga yang mengajarkan aku arti kegigihan dan keberanian.
+                Website ini ku buat khusus untukmu, my adventure partner! 💙
+            </p>
+            
+            <div class="nav-cards">
+                <a href="gallery.html" class="nav-card">
+                    <span class="card-icon">📸</span>
+                    <h3 class="card-title">Galeri Pendakian</h3>
+                    <p class="card-desc">Koleksi momen petualanganmu di puncak-puncak tertinggi</p>
+                </a>
+                
+                <a href="moments.html" class="nav-card">
+                    <span class="card-icon">💫</span>
+                    <h3 class="card-title">Our Moments</h3>
+                    <p class="card-desc">Timeline kenangan indah yang kita lalui bersama</p>
+                </a>
+                
+                <a href="about.html" class="nav-card">
+                    <span class="card-icon">💝</span>
+                    <h3 class="card-title">About You</h3>
+                    <p class="card-desc">Semua hal yang membuatku jatuh cinta padamu</p>
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Typing Effect
+        const phrases = [
+            "Setiap puncak yang kamu capai menginspirasi aku ✨",
+            "Kamu adalah petualangan terbaikku 🏔️",
+            "My Mountain Man, My Hero 💪",
+            "Together we can climb any mountain 🌟"
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 80;
+        const deletingSpeed = 50;
+        const pauseTime = 2000;
+
+        function typeText() {
+            const currentPhrase = phrases[phraseIndex];
+            const typingElement = document.getElementById('typingText');
+            
+            if (isDeleting) {
+                typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                setTimeout(() => { isDeleting = true; }, pauseTime);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+            
+            const speed = isDeleting ? deletingSpeed : typingSpeed;
+            setTimeout(typeText, speed);
+        }
+        
+        setTimeout(typeText, 1000);
+
+        // Create Particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('particles').appendChild(particle);
+        }
+
+        for (let i = 0; i < 50; i++) {
+            createParticle();
+        }
+
+        // Create Floating Hearts
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const hearts = ['❤️', '💕', '💖', '💗', '💙', '💜'];
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            heart.style.fontSize = (Math.random() * 1 + 1.5) + 'rem';
+            document.getElementById('floatingHearts').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        setInterval(createFloatingHeart, 1500);
+
+        // Add sparkle effect on mouse move
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.width = '4px';
+                sparkle.style.height = '4px';
+                sparkle.style.background = 'white';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '999';
+                sparkle.style.animation = 'sparkle 0.6s ease-out forwards';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 600);
+            }
+        });
+
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes sparkle {
+                0% {
+                    transform: scale(0);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(3);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
