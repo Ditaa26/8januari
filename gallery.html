@@ -330,6 +330,22 @@
       z-index: 100;
     }
 
+    .back-arrow {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 22px;
+  cursor: pointer;
+  color: #5a4636;
+  display: none;
+  z-index: 200;
+}
+
+.back-arrow:hover {
+  opacity: 0.6;
+}
+
+
     button {
       background: linear-gradient(135deg, #8B7355, #A0826D);
       border: 2px solid #5a4636;
@@ -428,29 +444,29 @@
     "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
     "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
     "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-       "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-          "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-             "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-       "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-      "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
-   "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  ";
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  "
+    "love u  love u  love u  love u  love u  love u  love u  love u  love u  love u  ";
 
   position: absolute;
   inset: 0;
@@ -894,6 +910,9 @@
     📸 View Photo Slideshow
   </button>
 
+<div class="back-arrow" onclick="goBack()">←</div>
+
+
   <div class="nav">
     <button onclick="prevPage()">← Prev</button>
     <button onclick="nextPage()">Next →</button>
@@ -1041,12 +1060,24 @@ let slideInterval;
 
 const stickers = ['⭐', '🌟', '💫', '✨', '🎯', '🏔️', '🚴', '💪', '🎉', '❤️'];
 
+const backArrow = document.querySelector(".back-arrow");
+const content = document.getElementById("text");
+const title = document.getElementById("title");
+const photoBox = document.getElementById("photos");
+const prevBtn = document.querySelector(".nav button:first-child");
 function renderPage() {
-  document.getElementById("title").innerText = pages[index].title;
-  document.getElementById("text").innerText = pages[index].text;
+title.textContent = pages[index].title;
+content.textContent = pages[index].text;
+photoBox.innerHTML = "";
 
-  const photoBox = document.getElementById("photos");
-  photoBox.innerHTML = "";
+  if (index === 0) {
+    prevBtn.style.display = "none";
+    backArrow.style.display = "block";
+  } else {
+    prevBtn.style.display = "inline-block";
+    backArrow.style.display = "none";
+  }
+
 
   // Show slideshow button hanya di halaman terakhir (penutup)
   const slideshowBtn = document.getElementById("slideshowBtn");
@@ -1094,6 +1125,13 @@ function nextPage() {
     renderPage();
   }
 }
+
+function goBack() {
+  window.location.href = "index.html";
+  // kalau mau fleksibel:
+  // window.history.back();
+}
+
 
 function prevPage() {
   if (index > 0) {
