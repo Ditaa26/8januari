@@ -790,17 +790,22 @@
 @keyframes firePhoto {
   0% {
     opacity: 0;
-    transform: scale(0.2) rotate(-20deg);
+    transform: scale(0.6) rotate(var(--rot)) translateY(20px);
   }
-  60% {
+  50% {
     opacity: 1;
-    transform: scale(1.15) rotate(10deg);
+    transform: scale(1.05) rotate(calc(var(--rot) * 0.5)) translateY(-6px);
   }
   100% {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
+    transform: scale(1) rotate(0deg) translateY(0);
   }
 }
+
+.slide-image {
+  transition: transform 6s ease-out;
+}
+
 
 .fade-out {
   animation: fadePhoto 0.6s ease-in forwards;
@@ -1049,7 +1054,12 @@ const slideshowPhotos = [
   "assets/7.jpeg",
   "assets/8.jpeg",
   "assets/9.jpeg",
-  "assets/10.jpeg"
+  "assets/10.jpeg",
+  "assets/11.jpeg",
+  "assets/12.jpeg",
+  "assets/13.jpeg",
+  "assets/14.jpeg",
+  "assets/1.jpeg"
 ];
 
 
@@ -1159,30 +1169,34 @@ function showSlide() {
   const counter = document.getElementById("slideCounter");
   const container = document.querySelector(".slideshow-container");
 
-  // HILANGKAN FOTO SEBELUMNYA
   img.classList.remove("fade-out");
   img.style.animation = "none";
 
-  // Random posisi (tetap di area modal)
   const imgSize = Math.min(container.offsetWidth * 0.7, 320);
-
-const maxX = container.offsetWidth - imgSize;
-const maxY = container.offsetHeight - imgSize;
-
+  const maxX = container.offsetWidth - imgSize;
+  const maxY = container.offsetHeight - imgSize;
 
   const randomX = Math.random() * maxX;
   const randomY = Math.random() * maxY;
 
+  const randomRotate = (Math.random() * 16 - 8).toFixed(2) + "deg";
+  const driftX = (Math.random() * 20 - 10).toFixed(2);
+  const driftY = (Math.random() * 20 - 10).toFixed(2);
+
   img.style.left = randomX + "px";
   img.style.top = randomY + "px";
+  img.style.setProperty("--rot", randomRotate);
 
-  // Set gambar baru
   img.src = slideshowPhotos[slideIndex];
   counter.textContent = `${slideIndex + 1} / ${slideshowPhotos.length}`;
 
-  // Trigger animasi ulang
   requestAnimationFrame(() => {
-    img.style.animation = "firePhoto 1.2s ease-out forwards";
+    img.style.animation = "firePhoto 1.4s cubic-bezier(.22,.61,.36,1) forwards";
+
+    // drift pelan setelah muncul
+    setTimeout(() => {
+      img.style.transform += ` translate(${driftX}px, ${driftY}px)`;
+    }, 1500);
   });
 }
 
@@ -1217,7 +1231,7 @@ function createFireworks(container) {
     
     container.appendChild(firework);
     
-    setTimeout(() => firework.remove(), 1200);
+    setTimeout(() => firework.remove(), 1000);
   }
 }
 
