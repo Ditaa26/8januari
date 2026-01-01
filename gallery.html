@@ -586,27 +586,21 @@
     }
 
     /* Tablet & Desktop responsiveness */
-    @media (min-width: 601px) and (max-width: 1200px) {
-      .scrapbook {
-        max-width: 80%;
-        padding: 45px 40px;
-      }
+   @media (min-width: 1201px) {
+  .scrapbook {
+    max-width: 640px;
+    padding: 45px 40px;
+  }
 
-      h1 {
-        font-size: 30px;
-      }
+  h1 {
+    font-size: 26px;
+  }
 
-      p {
-        font-size: 16px;
-      }
-    }
+  p {
+    font-size: 16px;
+  }
+}
 
-    @media (min-width: 1201px) {
-      .scrapbook {
-        max-width: 700px;
-        padding: 55px 50px;
-      }
-    }
 
     @media (max-width: 600px) {
       body {
@@ -1274,33 +1268,25 @@ function nextSlide() {
 
 
 function startSlideshow() {
-  slideInterval = setInterval(nextSlide, SLIDESHOW_SPEED); // Gunakan variable yang bisa diubah
+  stopSlideshow();
+  slideInterval = setInterval(nextSlide, SLIDESHOW_SPEED);
 }
 
 function stopSlideshow() {
-  clearInterval(slideInterval);
+  if (slideInterval) {
+    clearInterval(slideInterval);
+    slideInterval = null;
+  }
 }
 
-// Close modal when clicking outside image
-document.getElementById("slideshowModal").addEventListener("click", function(e) {
-  if (e.target === this) {
-    closeSlideshow();
-  }
-});
-
-// Close modal with Escape key
-document.addEventListener("keydown", function(e) {
+document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     closeSlideshow();
   }
 });
 
 
-
 renderPage();
-
-
 </script>
-
 </body>
 </html>  
